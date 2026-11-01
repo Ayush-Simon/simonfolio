@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="150 150 760 760" width="760" height="760">
+  <!-- bearded guy version. TODO: tweak colours to match you — skin, hair, tee -->
+  <defs>
+    <style>
+      .ink{stroke:#111;stroke-linecap:round;stroke-linejoin:round}
+      .skin{fill:#C98E66}.hair{fill:#1E1A1A}.tee{fill:#FF4D2E}
+    </style>
+  </defs>
+  <g transform="translate(30 50)">
+    <!-- hair (back) -->
+        <!-- neck -->
+    <rect class="skin ink" stroke-width="8" x="358" y="470" width="84" height="140"/>
+
+    <!-- waving arm (group so it can be animated: transform-origin ≈ shoulder) -->
+    <g id="wave-arm">
+      <path fill="none" class="ink" stroke-width="84" d="M600 700 Q672 640 690 560 L705 410"/>
+      <path fill="none" stroke="#C98E66" stroke-width="68" stroke-linecap="round" stroke-linejoin="round" d="M600 700 Q672 640 690 560 L705 410"/>
+      <g class="ink" fill="none" stroke-width="30">
+        <path d="M684 322 L670 262"/><path d="M704 312 L700 244"/><path d="M724 314 L732 250"/><path d="M744 328 L760 274"/><path d="M672 362 L632 338"/>
+      </g>
+      <ellipse class="skin ink" stroke-width="8" cx="712" cy="352" rx="50" ry="56" transform="rotate(10 712 352)"/>
+      <g fill="none" stroke="#C98E66" stroke-width="16" stroke-linecap="round">
+        <path d="M684 330 L670 262"/><path d="M704 320 L700 244"/><path d="M724 322 L732 250"/><path d="M742 336 L760 274"/><path d="M676 362 L632 338"/>
+      </g>
+      <!-- sleeve -->
+      <path fill="none" class="ink" stroke-width="106" d="M605 695 L652 640"/>
+      <path fill="none" stroke="#FF4D2E" stroke-width="90" stroke-linecap="round" d="M605 695 L652 640"/>
+    </g>
+    <!-- motion lines -->
+    <g id="motion" fill="none" class="ink" stroke-width="8">
+      <path d="M800 270 Q822 310 806 352"/><path d="M830 240 Q862 300 836 368"/><path d="M612 252 Q592 290 606 328"/>
+    </g>
+
+    <!-- body / tee -->
+    <path class="tee ink" stroke-width="8" d="M180 860 C180 660 250 590 400 590 C550 590 620 660 620 860 Z"/>
+    <path class="skin ink" stroke-width="8" d="M352 592 Q400 652 448 592 Z"/>
+
+    <!-- ears + earring -->
+    <circle class="skin ink" stroke-width="8" cx="268" cy="385" r="24"/>
+    <circle class="skin ink" stroke-width="8" cx="532" cy="385" r="24"/>
+    
+    <!-- head -->
+    <ellipse class="skin ink" stroke-width="8" cx="400" cy="368" rx="134" ry="142"/>
+
+    <!-- face -->
+    <ellipse cx="318" cy="414" rx="20" ry="13" fill="#FF4D2E" opacity=".22"/>
+    <ellipse cx="482" cy="414" rx="20" ry="13" fill="#FF4D2E" opacity=".22"/>
+    <ellipse cx="352" cy="385" rx="12" ry="16" fill="#111"/>
+    <ellipse cx="448" cy="385" rx="12" ry="16" fill="#111"/>
+    <circle cx="356" cy="379" r="4" fill="#fff"/><circle cx="452" cy="379" r="4" fill="#fff"/>
+    <g fill="none" class="ink" stroke-width="11">
+      <path d="M322 340 Q348 328 378 336"/><path d="M422 336 Q452 328 478 340"/>
+    </g>
+    <path fill="none" class="ink" stroke-width="6" d="M398 402 Q390 425 406 428"/>
+    <path class="hair ink" stroke-width="8" d="M268 352 C262 430 292 512 344 534 C372 548 428 548 456 534 C508 512 538 430 532 352 C524 398 508 428 484 440 C462 424 432 418 400 422 C368 418 338 424 316 440 C292 428 276 398 268 352 Z"/>
+    <g fill="none" stroke="#3A3434" stroke-width="4" stroke-linecap="round"><path d="M300 470 Q312 490 330 500"/><path d="M500 470 Q488 490 470 500"/><path d="M385 515 Q400 522 415 515"/></g>
+    <path fill="#7A1F14" class="ink" stroke-width="6" d="M350 446 Q400 506 450 446 Q400 458 350 446 Z"/>
+    <path fill="#fff" d="M360 452 Q400 462 440 452 Q436 466 426 472 L374 472 Q364 466 360 452 Z"/>
+
+    <!-- bangs -->
+    <path class="hair ink" stroke-width="8" d="M268 352 C252 262 290 212 345 198 C368 168 428 162 462 186 C512 194 552 246 532 352 C524 316 514 296 498 284 C478 302 440 306 412 294 C386 308 344 308 318 292 C296 304 278 324 268 352 Z"/>
+      <g fill="none" stroke="#3A3434" stroke-width="5" stroke-linecap="round"><path d="M352 222 Q390 210 420 236"/><path d="M430 206 Q470 214 486 250"/><path d="M318 248 Q338 232 362 240"/></g>
+  </g>
+</svg>

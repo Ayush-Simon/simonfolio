@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="150 150 760 760" width="760" height="760">
+
+<defs>
+  <pattern id="knit" width="10" height="8" patternUnits="userSpaceOnUse">
+    <path d="M0 4 Q2.5 1.5 5 4 T10 4" fill="none" stroke="#111111" stroke-opacity=".08" stroke-width="1.5"/>
+  </pattern>
+</defs>
+
+<g transform="translate(30 50)">
+  <g class="torso">
+    <path d="M348 498 L348 606 Q400 624 452 606 L452 498 Z" fill="#d48f5c" stroke="#111111" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M348 520 Q400 560 452 520 L452 498 L348 498 Z" fill="#b8733f"/>
+    <path d="M180 860 C180 662 252 592 400 590 C548 592 620 662 620 860 Z" fill="#e6e0d3"/>
+    <path d="M180 860 C180 662 252 592 400 590 C548 592 620 662 620 860 Z" fill="url(#knit)"/>
+    <path d="M548 630 C592 670 614 760 614 860 L568 860 C570 770 560 690 548 630 Z" fill="#cec7b6"/>
+    <path d="M180 860 C180 662 252 592 400 590 C548 592 620 662 620 860 Z" fill="none" stroke="#111111" stroke-width="8"/>
+    <!-- open neck, white collar, placket -->
+    <path d="M362 592 L400 656 L438 592 Z" fill="#d48f5c" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M368 586 C346 590 322 598 306 606 L344 656 C358 644 376 634 396 644 Z" fill="#fbf9f4" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M 432 586 C 454 590 478 598 494 606 L 456 656 C 442 644 424 634 404 644 Z" fill="#fbf9f4" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M400 658 L400 734" stroke="#111111" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+    <!-- the other arm at his side: sleeve seam, white trim, forearm -->
+    <path d="M252 704 Q250 780 246 860" fill="none" stroke="#111111" stroke-width="5" opacity=".6"/>
+    <path d="M181 790 Q214 780 250 794 L246 860 L180 860 Z" fill="#d48f5c" stroke="#111111" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M181 768 Q216 758 252 770 L250 796 Q214 782 181 792 Z" fill="#fbf9f4" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <g class="head">
+    <!-- ears -->
+    <ellipse cx="272" cy="392" rx="24" ry="31" fill="#d48f5c" stroke="#111111" stroke-width="7"/>
+    <path d="M270 376 Q258 392 271 409" fill="none" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="528" cy="392" rx="24" ry="31" fill="#d48f5c" stroke="#111111" stroke-width="7"/>
+    <path d="M530 376 Q542 392 529 409" fill="none" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- face, with one flat shadow down the right side -->
+    <path d="M282 322 C282 236 334 206 400 206 C466 206 518 236 518 322 C518 424 500 506 400 534 C300 506 282 424 282 322 Z" fill="#d48f5c"/>
+    <path d="M478 236 C508 262 518 300 518 340 C518 380 512 408 504 430 L492 424 C500 394 504 360 500 320 C496 284 490 258 478 236 Z" fill="#b8733f" opacity=".7"/>
+    <path d="M282 322 C282 236 334 206 400 206 C466 206 518 236 518 322 C518 424 500 506 400 534 C300 506 282 424 282 322 Z" fill="none" stroke="#111111" stroke-width="8"/>
+    <ellipse cx="322" cy="406" rx="20" ry="11" fill="#ff4d2e" opacity=".22"/>
+    <ellipse cx="478" cy="406" rx="20" ry="11" fill="#ff4d2e" opacity=".22"/>
+
+    <path d="M302 326 C314 300 356 288 396 298 C401 305 400 314 394 319 C360 309 330 314 306 336 Z" fill="#1d191a" stroke="#111111" stroke-width="3" stroke-linejoin="round"/><path d="M 498 326 C 486 300 444 288 404 298 C 399 305 400 314 406 319 C 440 309 470 314 494 336 Z" fill="#1d191a" stroke="#111111" stroke-width="3" stroke-linejoin="round"/>
+    
+    <clipPath id="eyeL"><path d="M319 360 C331 335 373 332 387 353 C375 366 335 369 319 360 Z"/></clipPath>
+    <path d="M319 360 C331 335 373 332 387 353 C375 366 335 369 319 360 Z" fill="#fbf9f4"/>
+    <g clip-path="url(#eyeL)">
+      <circle cx="356" cy="354" r="15" fill="#6b3d20"/>
+      <circle cx="356" cy="354" r="7" fill="#111111"/>
+      <circle cx="361" cy="348" r="4.5" fill="#fff"/>
+    </g>
+    <path d="M319 360 C331 335 373 332 387 353 C375 366 335 369 319 360 Z" fill="none" stroke="#111111" stroke-width="4"/>
+    <path d="M388 353 C374 328 330 331 317 361 L307 354" fill="none" stroke="#111111" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <clipPath id="eyeR"><path d="M 481 360 C 469 335 427 332 413 353 C 425 366 465 369 481 360 Z"/></clipPath>
+    <path d="M 481 360 C 469 335 427 332 413 353 C 425 366 465 369 481 360 Z" fill="#fbf9f4"/>
+    <g clip-path="url(#eyeR)">
+      <circle cx="444" cy="354" r="15" fill="#6b3d20"/>
+      <circle cx="444" cy="354" r="7" fill="#111111"/>
+      <circle cx="449" cy="348" r="4.5" fill="#fff"/>
+    </g>
+    <path d="M 481 360 C 469 335 427 332 413 353 C 425 366 465 369 481 360 Z" fill="none" stroke="#111111" stroke-width="4"/>
+    <path d="M 412 353 C 426 328 470 331 483 361 L 493 354" fill="none" stroke="#111111" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- nose -->
+    <path d="M392 360 Q388 384 384 398" fill="none" stroke="#b8733f" stroke-width="5" stroke-linecap="round"/>
+    <path d="M382 400 C368 410 376 428 392 424 Q400 430 408 424 C424 428 432 410 418 400" fill="none" stroke="#111111" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- full beard: sideburns, cheeks, rounded chin, thick moustache -->
+    <path d="M282 330 C278 450 306 538 362 564 Q400 580 438 564 C494 538 522 450 518 330
+             C513 362 506 392 492 410 C480 425 464 434 450 440 C434 432 416 427 400 431
+             C384 427 366 432 350 440 C336 434 320 425 308 410 C294 392 287 362 282 330 Z"
+          fill="#1d191a" stroke="#111111" stroke-width="7" stroke-linejoin="round"/>
+    <g fill="none" stroke="#3d3637" stroke-width="4" stroke-linecap="round">
+      <path d="M302 436 Q312 472 334 498"/><path d="M498 436 Q488 472 466 498"/>
+      <path d="M352 524 Q376 542 400 544"/><path d="M448 524 Q424 542 400 544"/>
+      <path d="M296 384 Q300 408 310 424"/><path d="M504 384 Q500 408 490 424"/>
+    </g>
+
+    
+    <clipPath id="mouth"><path d="M350 452 Q400 512 450 452 Q400 463 350 452 Z"/></clipPath>
+    <path d="M342 448 Q400 524 458 448 Q400 457 342 448 Z" fill="#c4705f"/>
+    <path d="M350 452 Q400 512 450 452 Q400 463 350 452 Z" fill="#5e1611"/>
+    <g clip-path="url(#mouth)">
+      <path d="M350 452 Q400 466 450 452 L450 471 Q400 484 350 471 Z" fill="#fff"/>
+      <ellipse cx="400" cy="500" rx="22" ry="12" fill="#d9645a"/>
+    </g>
+    <path d="M350 452 Q400 512 450 452 Q400 463 350 452 Z" fill="none" stroke="#111111" stroke-width="5" stroke-linejoin="round"/>
+
+    <!-- hair: tall quiff swept up and back -->
+    <path d="M274 352 C264 304 264 252 288 214 C302 194 318 182 338 174 C348 150 376 132 410 132
+             C440 122 478 132 498 152 C522 166 539 196 539 238 C542 278 536 316 528 352
+             C522 324 514 300 503 288 C491 264 466 250 434 245 C402 240 362 246 332 258
+             C308 270 292 296 285 330 Z"
+          fill="#1d191a" stroke="#111111" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M336 214 C364 176 418 160 470 172 C430 176 392 192 364 220 Z" fill="#3d3637"/>
+    <g fill="none" stroke="#3d3637" stroke-width="5" stroke-linecap="round">
+      <path d="M352 248 Q358 202 398 172"/><path d="M432 240 Q448 198 490 178"/><path d="M470 248 Q492 216 516 202"/>
+    </g>
+  </g>
+</g>
+</svg>

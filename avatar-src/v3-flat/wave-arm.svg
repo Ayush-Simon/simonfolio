@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="150 150 760 760" width="760" height="760">
+
+<defs>
+  <pattern id="knit" width="10" height="8" patternUnits="userSpaceOnUse">
+    <path d="M0 4 Q2.5 1.5 5 4 T10 4" fill="none" stroke="#111111" stroke-opacity=".08" stroke-width="1.5"/>
+  </pattern>
+</defs>
+
+<g transform="translate(30 50)">
+  <g id="wave-arm">
+    <path d="M600 700 Q672 640 690 560 L705 410" fill="none" stroke="#111111" stroke-width="82" stroke-linecap="round" stroke-linejoin="round"/><path d="M600 700 Q672 640 690 560 L705 410" fill="none" stroke="#d48f5c" stroke-width="66" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <g fill="none" stroke="#111111" stroke-width="34" stroke-linecap="round"><path d="M684 322 L670 260"/><path d="M704 312 L700 242"/><path d="M724 314 L732 248"/><path d="M742 328 L760 272"/><path d="M672 360 L630 336"/></g>
+    <ellipse cx="712" cy="352" rx="52" ry="58" transform="rotate(10 712 352)" fill="#d48f5c" stroke="#111111" stroke-width="7"/>
+    <g fill="none" stroke="#d48f5c" stroke-width="20" stroke-linecap="round"><path d="M684 322 L670 260"/><path d="M704 312 L700 242"/><path d="M724 314 L732 248"/><path d="M742 328 L760 272"/><path d="M672 360 L630 336"/></g>
+    <path d="M694 372 Q716 384 738 370" fill="none" stroke="#b8733f" stroke-width="4" stroke-linecap="round"/>
+    
+    <g transform="rotate(33 634 660)">
+      <rect x="591.0" y="606.0" width="86" height="108" rx="32" fill="#e6e0d3" stroke="#111111" stroke-width="7"/>
+      <rect x="591.0" y="606.0" width="86" height="108" rx="32" fill="url(#knit)"/>
+      <rect x="591.0" y="606.0" width="86" height="22" rx="11" fill="#fbf9f4" stroke="#111111" stroke-width="6"/>
+    </g>
+  </g>
+  <g id="motion" fill="none" stroke="#111111" stroke-width="8" stroke-linecap="round">
+    <path d="M806 268 Q828 308 812 350"/><path d="M836 238 Q868 298 842 366"/><path d="M604 250 Q584 288 598 326"/>
+  </g>
+</g>
+</svg>

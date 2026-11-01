@@ -1,0 +1,481 @@
+/* Hallmark · checked: 2026-11-01 · genre: editorial (inferred) · nav: wordmark left, three links right, no button, no hairline · footer: two centred lines
+ * floor: fixed: 2, 3, 4, 6, 7, 9, 10, 11, 12, 14 · structural: centred layout by request
+ * built: the project · redesign: polish · v2.0.0 */
+/* Hallmark · waive 6b · hero stacks the waving avatar, hey i'm, Ayush Simon Barwa, the line and say hi on one centred axis · Ayush asked for simonfolio to be centre aligned, so the avatar waves above the name and say hi sits under the line */
+/* Hallmark · waive 39b · each tracklist row is one button holding the track title, blurb and play icon · the whole row opens the track, so the tap target is the row, not a 48px control */
+/* Hallmark · waive 80 · the 12-shape SVG is the record behind the dj avatar and it spins with scroll speed · the record is the interactive b-side toy: scroll faster and the record spins faster */
+/* Hallmark · dismissed 41 · --night-ink only applies under html[data-sky="night"], where --header-bg switches to the dark --sky-night-a, so light text never sits on the light day header */
+/* Hallmark · dropped #label-arc, label-arc · the record's middle-dot label text went with gate 63, so the record is now plain grooves */
+/* Hallmark · dropped onTransitionEnd={() => ScrollTrigger.refresh()} · the tracklist accordion no longer animates height, so it refreshes when a track opens */
+/* Hallmark · dropped onPointerEnter={() => wave(gsap, avatar.current, 1)} · the goodbye wave on hover now checks reduced motion first */
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f5f3ee;
+  --color-ink: #111111;
+  --color-accent: #ff4d2e;
+  --color-accent-ink: #111111;
+  --color-mute: #5c5952;
+  --color-line: #e4e0d7;
+  /* stays light in every sky: the arch behind the dj */
+  --color-chalk: #f5f3ee;
+  /* stays dark in every sky: the dj panel */
+  --color-deck: #111111;
+
+  /* the record */
+  --color-vinyl: #1b1b1b;
+  --color-groove: #2c2c2c;
+  --color-shine: rgb(255 255 255 / 0.05);
+  --color-shadow: rgb(17 17 17 / 0.45);
+
+  /* the swatch toy */
+  --color-swatch-blue: #2e5bff;
+  --color-swatch-green: #13a36e;
+  --color-swatch-yellow: #f2b705;
+
+  --font-display: var(--font-instrument), "Times New Roman", serif;
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --text-story: clamp(2.5rem, 7vw, 6rem);
+  --text-huge: clamp(3.5rem, 11vw, 9.5rem);
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  scrollbar-color: var(--color-ink) var(--color-paper);
+  caret-color: var(--color-accent);
+}
+
+body {
+  /* the sky (components/Sky.tsx) shows through */
+  background: transparent;
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* one container: capped and centred, the gutters grow on wide screens */
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .wrap {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* small text: the body face, a step smaller, as written */
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--color-mute);
+}
+
+/* the one primary button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition-property: background-color, color, transform;
+  transition-duration: 200ms;
+}
+.btn:hover {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background: var(--color-line);
+  color: var(--color-ink);
+  cursor: not-allowed;
+}
+
+/* focus: instant, ink on paper, paper on ink */
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+  transition: none;
+}
+.on-ink :where(a, button, input, [tabindex]):focus-visible {
+  outline-color: var(--color-chalk);
+}
+:where(button, input):disabled {
+  color: var(--color-mute);
+  cursor: not-allowed;
+}
+
+/* ---------- the sky: time of day + live weather in bhubaneswar ---------- */
+:root {
+  --sky-dawn-a: #f2e0d6;
+  --sky-dawn-b: #f5ebe2;
+  --sky-dawn-c: #f5f1ec;
+  --sky-day-a: #e1eaf0;
+  --sky-day-b: #edf1f1;
+  --sky-day-c: #f5f3ee;
+  --sky-dusk-a: #e8dee6;
+  --sky-dusk-b: #f2e2d6;
+  --sky-dusk-c: #f5efe9;
+  --sky-night-a: #10131d;
+  --sky-night-b: #141824;
+  --sky-night-c: #191d2a;
+  --sun-core: #fff6d8;
+  --sun-glow: rgb(255 214 140 / 0.22);
+  --moon-core: #f1f0e8;
+  --moon-glow: rgb(215 222 245 / 0.1);
+  --star: #f4f6ff;
+  --cloud: rgb(255 255 255 / 0.5);
+  --wash: rgb(118 126 140);
+  --rain: rgb(130 142 158 / 0.35);
+  --flash: rgb(255 255 255 / 0.5);
+  --halo: transparent;
+  --header-bg: var(--sky-day-a);
+  --sky-fade: 4s;
+
+  /* the low-sun and night palettes the phases switch to */
+  --dawn-sun-core: #ffe7c7;
+  --dawn-sun-glow: rgb(255 176 130 / 0.22);
+  --dusk-sun-core: #ffdcbc;
+  --dusk-sun-glow: rgb(255 158 120 / 0.24);
+  --night-paper: #12151f;
+  --night-ink: #eef0f7;
+  --night-mute: #a3a8b8;
+  --night-line: #22273a;
+  --night-shadow: rgb(0 0 0 / 0.6);
+  --night-cloud: rgb(60 66 86 / 0.5);
+  --night-wash: rgb(24 28 40);
+  --night-rain: rgb(170 180 200 / 0.25);
+  --night-halo: rgb(245 243 238 / 0.78);
+}
+html[data-sky="dawn"] {
+  --header-bg: var(--sky-dawn-a);
+  --sun-core: var(--dawn-sun-core);
+  --sun-glow: var(--dawn-sun-glow);
+}
+html[data-sky="dusk"] {
+  --header-bg: var(--sky-dusk-a);
+  --sun-core: var(--dusk-sun-core);
+  --sun-glow: var(--dusk-sun-glow);
+}
+/* night: the page turns dark and the text turns light */
+html[data-sky="night"] {
+  --header-bg: var(--sky-night-a);
+  --color-paper: var(--night-paper);
+  --color-ink: var(--night-ink);
+  --color-mute: var(--night-mute);
+  --color-line: var(--night-line);
+  --color-shadow: var(--night-shadow);
+  --cloud: var(--night-cloud);
+  --wash: var(--night-wash);
+  --rain: var(--night-rain);
+  --halo: var(--night-halo);
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--color-paper);
+}
+.sky > * {
+  position: absolute;
+}
+.sky-grad {
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--sky-fade) ease;
+}
+.sky-dawn {
+  background: linear-gradient(to bottom, var(--sky-dawn-a), var(--sky-dawn-b) 55%, var(--sky-dawn-c));
+}
+.sky-day {
+  background: linear-gradient(to bottom, var(--sky-day-a), var(--sky-day-b) 55%, var(--sky-day-c));
+}
+.sky-dusk {
+  background: linear-gradient(to bottom, var(--sky-dusk-a), var(--sky-dusk-b) 50%, var(--sky-dusk-c));
+}
+.sky-night {
+  background: linear-gradient(to bottom, var(--sky-night-a), var(--sky-night-b) 55%, var(--sky-night-c));
+}
+html:not([data-sky]) .sky-day,
+html[data-sky="dawn"] .sky-dawn,
+html[data-sky="day"] .sky-day,
+html[data-sky="dusk"] .sky-dusk,
+html[data-sky="night"] .sky-night {
+  opacity: 1;
+}
+
+.sky-stars {
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--sky-fade) ease;
+}
+html[data-sky="night"] .sky-stars {
+  opacity: calc(0.8 - var(--cloudiness, 0) * 0.8);
+}
+.sky-stars i {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--star);
+  opacity: 0.4;
+}
+.sky-stars i.twinkle {
+  animation: sky-twinkle 4s ease-in-out infinite;
+}
+
+.sky-sun,
+.sky-moon {
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  transition:
+    transform 60s linear,
+    opacity var(--sky-fade) ease;
+}
+.sky-sun {
+  width: 20vmin;
+  height: 20vmin;
+  background: radial-gradient(circle, var(--sun-core) 0 16%, var(--sun-glow) 26%, transparent 66%);
+  transform: translate(calc(var(--sun-x, 50vw) - 10vmin), calc(var(--sun-y, 14vh) - 10vmin));
+  opacity: calc(0.55 - var(--cloudiness, 0) * 0.4);
+}
+.sky-moon {
+  width: 11vmin;
+  height: 11vmin;
+  background: radial-gradient(circle, var(--moon-core) 0 24%, var(--moon-glow) 32%, transparent 70%);
+  transform: translate(calc(var(--moon-x, 50vw) - 5.5vmin), calc(var(--moon-y, 20vh) - 5.5vmin));
+}
+html[data-sky]:not([data-sky="night"]) .sky-moon,
+html:not([data-sky]) .sky-moon {
+  opacity: 0;
+}
+html[data-sky="night"] .sky-sun {
+  opacity: 0;
+}
+html[data-sky="night"] .sky-moon {
+  opacity: calc(0.6 - var(--cloudiness, 0) * 0.4);
+}
+
+.sky-clouds {
+  inset: 0;
+  opacity: calc(var(--cloudiness, 0) * 0.4);
+  transition: opacity var(--sky-fade) ease;
+}
+.sky-clouds i {
+  position: absolute;
+  width: 70vw;
+  height: 34vh;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--cloud), transparent);
+  animation: sky-drift 70s ease-in-out infinite alternate;
+}
+.sky-clouds i:nth-child(1) {
+  left: -15vw;
+  top: -6vh;
+}
+.sky-clouds i:nth-child(2) {
+  left: 40vw;
+  top: 4vh;
+  animation-duration: 90s;
+  animation-direction: alternate-reverse;
+}
+.sky-clouds i:nth-child(3) {
+  left: 5vw;
+  top: 28vh;
+  width: 55vw;
+  animation-duration: 110s;
+}
+.sky-clouds i:nth-child(4) {
+  left: 55vw;
+  top: 38vh;
+  width: 50vw;
+  height: 26vh;
+  animation-duration: 80s;
+  animation-direction: alternate-reverse;
+}
+
+/* grey veil for overcast, fog, rain and storms */
+.sky-wash {
+  inset: 0;
+  background: var(--wash);
+  opacity: 0;
+  transition: opacity var(--sky-fade) ease;
+}
+html[data-weather="clouds"] .sky-wash {
+  opacity: calc(var(--cloudiness, 0) * 0.06);
+}
+html[data-weather="fog"] .sky-wash {
+  background: var(--color-chalk);
+  opacity: 0.22;
+}
+html[data-sky="night"][data-weather="fog"] .sky-wash {
+  background: var(--wash);
+}
+html[data-weather="drizzle"] .sky-wash {
+  opacity: 0.06;
+}
+html[data-weather="rain"] .sky-wash,
+html[data-weather="snow"] .sky-wash {
+  opacity: 0.09;
+}
+html[data-weather="storm"] .sky-wash {
+  opacity: 0.13;
+}
+
+/* falling streaks: thin lines masked into dashes, moved with transform only.
+   Two line spacings and two dash rhythms overlap so the rain doesn't read as a grid. */
+.sky-rain {
+  left: -20vw;
+  top: -360px;
+  width: 140vw;
+  height: calc(100vh + 720px);
+  opacity: 0;
+  background:
+    repeating-linear-gradient(to right, transparent 0 96px, var(--rain) 96px 97px),
+    repeating-linear-gradient(to right, transparent 0 41px, var(--rain) 41px 42px, transparent 42px 151px);
+  mask-image:
+    repeating-linear-gradient(to bottom, transparent 0 34px, var(--star) 34px 60px),
+    repeating-linear-gradient(to bottom, transparent 0 61px, var(--star) 61px 90px);
+  transform: rotate(10deg);
+  animation: sky-fall 0.6s linear infinite;
+}
+html[data-weather="drizzle"] .sky-rain {
+  opacity: 0.18;
+}
+html[data-weather="rain"] .sky-rain {
+  opacity: 0.3;
+}
+html[data-weather="storm"] .sky-rain {
+  opacity: 0.38;
+}
+html[data-weather="snow"] .sky-rain {
+  opacity: 0.35;
+  background: radial-gradient(circle, var(--color-chalk) 0 2px, transparent 2.5px) 0 0 / 44px 60px;
+  mask-image: none;
+  animation-duration: 6s;
+}
+
+.sky-flash {
+  inset: 0;
+  background: var(--flash);
+  opacity: 0;
+}
+html[data-weather="storm"] .sky-flash {
+  animation: sky-flash 16s linear infinite;
+}
+
+/* a soft light behind the avatars, so they read against the night sky */
+.sky-halo {
+  background: radial-gradient(closest-side, var(--halo), transparent);
+  transition: opacity var(--sky-fade) ease;
+}
+
+@keyframes sky-twinkle {
+  50% {
+    opacity: 0.15;
+  }
+}
+@keyframes sky-drift {
+  from {
+    transform: translateX(-8vw);
+  }
+  to {
+    transform: translateX(8vw);
+  }
+}
+@keyframes sky-fall {
+  from {
+    transform: rotate(10deg) translateY(0);
+  }
+  to {
+    transform: rotate(10deg) translateY(180px);
+  }
+}
+@keyframes sky-flash {
+  0%,
+  94%,
+  100% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0.16;
+  }
+  96.5% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sky-rain,
+  .sky-clouds i,
+  .sky-stars i,
+  .sky-flash {
+    animation: none !important;
+  }
+  .sky-rain {
+    opacity: 0.12 !important;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* custom cursor hides the native one only when it's active */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
