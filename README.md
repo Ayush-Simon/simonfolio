@@ -7,7 +7,7 @@ Built with Next.js (App Router), TypeScript, Tailwind CSS, GSAP (ScrollTrigger +
 
 ## Open it in a browser
 
-You need [Node.js](https://nodejs.org) 20 or newer and git.
+You need [Node.js](https://nodejs.org) 20.9 or newer (`.nvmrc` pins 22, so `nvm use` picks it) and git.
 
 ```bash
 git clone https://github.com/Ayush-Simon/simonfolio.git
